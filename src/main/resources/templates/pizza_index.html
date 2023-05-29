@@ -12,7 +12,12 @@
 </head>
 <body class="p-2 text-center">
     <a class="nav-link active text-danger text-center pb-5" th:href="@{/}">Torna alla home!</a>
-    <h1>Le nostre pizze</h1>
+    <h1 class="pb-3">Le nostre pizze</h1>
+    <form th:action="@{/pizze/by/nome}" method="POST" class="pb-3">
+		<label>Nome</label>
+		<input type="text" name="nome" th:value="${nome}">
+		<input type="submit" value="Cerca una pizza">
+	</form>
     <ul class="list-group">
         <li class="list-group-item"
             th:each="pizza : ${pizze}"
