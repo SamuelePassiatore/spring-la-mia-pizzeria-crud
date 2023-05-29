@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Crea una pizza</title>
+</head>
+<body>
+	<h1>Crea una pizza</h1>
+	<form method="POST" th:action="@{/pizze/store}">
+		<label>Nome</label>
+		<input type="text" name="nome">
+		<br>
+		<label>Descrizione</label>
+		<input type="text" name="descrizione">
+		<br>
+		<label>Foto</label>
+		<input type="url" name="foto">
+		<br>
+		<label>Prezzo</label>
+		<input type="number" name="prezzo">
+		<input type="submit" value="Crea una pizza">
+	</form>
+</body>
+</html>
