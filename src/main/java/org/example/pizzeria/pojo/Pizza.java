@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 @Entity
 public class Pizza {
@@ -12,9 +15,14 @@ public class Pizza {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@NotBlank(message = "Il campo nome non può essere nullo")
 	private String nome;
+	@NotBlank(message = "Il campo descrizione non può essere nullo")
     private String descrizione;
+	@NotBlank(message = "Il campo foto non può essere nullo")
     private String foto;
+    @Min(value = 1, message = "Il prezzo minimo è di 1 euro")
+    @Max(value = 1000, message = "Il prezzo massimo è di 1000 euro")
     private double prezzo;
     
     private boolean deleted = false;

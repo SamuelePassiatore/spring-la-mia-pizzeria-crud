@@ -12,18 +12,42 @@
 		<div class="pb-2">
 			<label>Nome</label>
 			<input type="text" name="nome" th:value="*{nome}">
+			<label 
+			style="color: red"
+			th:if="${errors != null && errors.hasFieldErrors('nome')}"
+			>
+			[[ ${errors.getFieldError('nome').defaultMessage} ]]
+			</label>
 		</div>
 		<div class="pb-2">
 			<label>Descrizione</label>
 			<input type="text" name="descrizione" th:value="*{descrizione}">
+			<label 
+			style="color: red"
+			th:if="${errors != null && errors.hasFieldErrors('descrizione')}"
+			>
+			[[ ${errors.getFieldError('descrizione').defaultMessage} ]]
+			</label>
 		</div>
 		<div class="pb-2">
 			<label>Foto</label>
 			<input type="url" name="foto" th:value="*{foto}">
+			<label 
+			style="color: red"
+			th:if="${errors != null && errors.hasFieldErrors('foto')}"
+			>
+			[[ ${errors.getFieldError('foto').defaultMessage} ]]
+			</label>
 		</div>
 		<div class="pb-2">
 			<label>Prezzo</label>
 			<input type="number" name="prezzo" th:value="*{prezzo}">
+			<label 
+			style="color: red"
+			th:if="${errors != null && errors.hasFieldErrors('prezzo')}"
+			>
+			[[ ${errors.getFieldError('prezzo').defaultMessage} ]]
+			</label>
 		</div>
 		<input class="btn btn-small btn-secondary" type="submit" value="Salva">
 	</form>

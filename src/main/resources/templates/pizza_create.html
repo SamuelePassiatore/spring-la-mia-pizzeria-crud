@@ -6,24 +6,48 @@
 <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
 <title>Crea una pizza</title>
 </head>
-<body class="p-4">
+<body class="p-4" th:object="${pizza}">
 	<h1>Crea una pizza</h1>
 	<form method="POST" th:action="@{/pizze/store}">
 		<div class="pb-2">
 			<label>Nome</label>
-			<input type="text" name="nome">
+			<input type="text" name="nome" th:value="*{nome}">
+			<label 
+			style="color: red"
+			th:if="${errors != null && errors.hasFieldErrors('nome')}"
+			>
+			[[ ${errors.getFieldError('nome').defaultMessage} ]]
+			</label>
 		</div>
 		<div class="pb-2">
 			<label>Descrizione</label>
-			<input type="text" name="descrizione">
+			<input type="text" name="descrizione" th:value="*{descrizione}">
+			<label 
+			style="color: red"
+			th:if="${errors != null && errors.hasFieldErrors('descrizione')}"
+			>
+			[[ ${errors.getFieldError('descrizione').defaultMessage} ]]
+			</label>
 		</div>
 		<div class="pb-2">
 			<label>Foto</label>
-			<input type="url" name="foto">
+			<input type="url" name="foto" th:value="*{foto}">
+			<label 
+			style="color: red"
+			th:if="${errors != null && errors.hasFieldErrors('foto')}"
+			>
+			[[ ${errors.getFieldError('foto').defaultMessage} ]]
+			</label>
 		</div>
 		<div class="pb-2">
 			<label>Prezzo</label>
-			<input type="number" name="prezzo">
+			<input type="number" name="prezzo" th:value="*{prezzo}">
+			<label 
+			style="color: red"
+			th:if="${errors != null && errors.hasFieldErrors('prezzo')}"
+			>
+			[[ ${errors.getFieldError('prezzo').defaultMessage} ]]
+			</label>
 		</div>
 		<input class="btn btn-small btn-secondary" type="submit" value="Crea">
 	</form>
