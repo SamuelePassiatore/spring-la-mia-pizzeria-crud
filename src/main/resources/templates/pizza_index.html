@@ -13,19 +13,26 @@
 <body class="p-2 text-center">
     <a class="nav-link active text-danger text-center pb-5" th:href="@{/}">Torna alla home!</a>
     <h1 class="pb-3">Le nostre pizze</h1>
-    <form th:action="@{/pizze/nome}" method="POST" class="pb-3">
-		<label>Nome</label>
+    <form th:action="@{/pizze/nome}" method="POST" class="pb-5">
 		<input type="text" name="nome" th:value="${nome}">
 		<input class="btn btn-small btn-primary" type="submit" value="Cerca una pizza">
 	</form>
     <ul class="list-group">
-        <li class="list-group-item"
+        <li class="list-group-item d-flex justify-content-center"
             th:each="pizza : ${pizze}"
             th:object="${pizza}"
         >
-            <a th:href="@{/pizze/{id} (id=*{id})}">
+            <a class="pe-5 d-flex align-items-center" th:href="@{/pizze/{id} (id=*{id})}">
                 [[*{nome}]]
             </a>
+            <div class="ps-5">
+	           	<a class="pe-3 btn btn-small btn-danger" th:href="@{/pizze/delete/{id} (id=*{id})}">
+					Elimina
+				</a>
+				<a class="btn btn-small btn-warning" th:href="@{/pizze/update/{id} (id=*{id})}">
+					Modifica
+				</a>
+            </div>
         </li>
         <li class="list-group-item text-muted" th:if="${pizze.isEmpty()}">
             Non ci sono pizze disponibili al momento.

@@ -4,28 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
-<title>Crea una pizza</title>
+<title>Modifica una pizza</title>
 </head>
-<body class="p-4">
-	<h1>Crea una pizza</h1>
-	<form method="POST" th:action="@{/pizze/store}">
+<body class="p-4" th:object="${pizza}">
+	<h1>Modifica una pizza</h1>
+	<form method="POST" th:action="@{/pizze/update/{id} (id=*{id})}">
 		<div class="pb-2">
 			<label>Nome</label>
-			<input type="text" name="nome">
+			<input type="text" name="nome" th:value="*{nome}">
 		</div>
 		<div class="pb-2">
 			<label>Descrizione</label>
-			<input type="text" name="descrizione">
+			<input type="text" name="descrizione" th:value="*{descrizione}">
 		</div>
 		<div class="pb-2">
 			<label>Foto</label>
-			<input type="url" name="foto">
+			<input type="url" name="foto" th:value="*{foto}">
 		</div>
 		<div class="pb-2">
 			<label>Prezzo</label>
-			<input type="number" name="prezzo">
+			<input type="number" name="prezzo" th:value="*{prezzo}">
 		</div>
-		<input class="btn btn-small btn-secondary" type="submit" value="Crea">
+		<input class="btn btn-small btn-secondary" type="submit" value="Salva">
 	</form>
 </body>
 </html>

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 @Controller
 public class PizzaController {
 
@@ -70,6 +72,42 @@ public class PizzaController {
 
 			pizzaService.save(pizza);
 
-			return "redirect:/";
+			return "redirect:/pizze";
+		}
+		
+		@GetMapping("/pizze/update/{id}")
+		public String editPizza(
+				Model model,
+				@PathVariable int id
+			) {
+
+			Optional<Pizza> pizzaOpt = pizzaService.findById(id);
+			Pizza pizza = pizzaOpt.get();
+			model.addAttribute("pizza", pizza);
+
+			return "pizza_update";
+		}
+		
+		@PostMapping("/pizze/update/{id}")
+		public String updatePizza(
+				@PathVariable int id,
+				@ModelAttribute Pizza pizza
+			) {
+
+			pizzaService.save(pizza);
+
+			return "redirect:/pizze";
+		}
+		
+		@GetMapping("/pizze/delete/{id}")
+		public String deletePizza(
+				@PathVariable int id
+			) {
+
+			Optional<Pizza> pizzaOpt = pizzaService.findById(id);
+			Pizza pizza = pizzaOpt.get();
+			pizzaService.deletePizza(pizza);
+
+			return "redirect:/pizze";
 		}
 }
