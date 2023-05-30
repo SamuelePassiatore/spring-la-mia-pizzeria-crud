@@ -18,6 +18,10 @@ public class PizzaService {
 		
 		return pizzaRepo.findAll();
 	}
+	public List<Pizza> findAllNotDeleted() {
+		
+		return pizzaRepo.findByDeletedFalse();
+	}
 	public Pizza save(Pizza pizza) {
 		
 		return pizzaRepo.save(pizza);
@@ -29,7 +33,7 @@ public class PizzaService {
 	
 	public List<Pizza> findByNome(String title) {
 
-		return pizzaRepo.findByNomeContaining(title);
+		return pizzaRepo.findByNomeContainingAndDeletedFalse(title);
 	}
 	
 	public void deletePizza(Pizza pizza) {

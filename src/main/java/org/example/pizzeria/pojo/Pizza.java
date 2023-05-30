@@ -17,6 +17,8 @@ public class Pizza {
     private String foto;
     private double prezzo;
     
+    private boolean deleted = false;
+    
     public Pizza() { }
     public Pizza(String nome, String descrizione, String foto, double prezzo) {
     	setNome(nome);
@@ -55,6 +57,13 @@ public class Pizza {
 	public void setPrezzo(double prezzo) {
 		this.prezzo = prezzo;
 	}
+	public boolean isDeleted() {
+		return deleted;
+	}
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+	
 	@Override
 	public String toString() {
 		

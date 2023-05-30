@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-
 @Controller
 public class PizzaController {
 
@@ -30,7 +28,7 @@ public class PizzaController {
 		@GetMapping("/pizze")
 		public String getHome(Model model) {
 			
-			List<Pizza> pizze = pizzaService.findAll();
+			List<Pizza> pizze = pizzaService.findAllNotDeleted();
 			
 			model.addAttribute("pizze", pizze);
 			
@@ -75,7 +73,7 @@ public class PizzaController {
 			return "redirect:/pizze";
 		}
 		
-		@GetMapping("/pizze/update/{id}")
+		@GetMapping("/pizze/edit/{id}")
 		public String editPizza(
 				Model model,
 				@PathVariable int id
@@ -107,6 +105,20 @@ public class PizzaController {
 			Optional<Pizza> pizzaOpt = pizzaService.findById(id);
 			Pizza pizza = pizzaOpt.get();
 			pizzaService.deletePizza(pizza);
+
+			return "redirect:/pizze";
+		}
+		
+		@GetMapping("/pizze/soft-delete/{id}")
+		public String softDeletePizza(
+				@PathVariable int id
+			) {
+
+			Optional<Pizza> pizzaOpt = pizzaService.findById(id);
+			Pizza pizza = pizzaOpt.get();
+
+			pizza.setDeleted(true);
+			pizzaService.save(pizza);
 
 			return "redirect:/pizze";
 		}
